@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Cart - FreshDairy</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f7faf7;
+            color: #222;
+            font-family: Arial, sans-serif;
+        }
+
+        nav {
+            background: white;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #2e7d32;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 25px;
+            font-weight: 500;
+        }
+
+        nav a:hover {
+            color: #2e7d32;
+        }
+
+        .cart-section {
+            padding: 60px 8%;
+            max-width: 900px;
+            margin: auto;
+        }
+
+        .cart-section h1 {
+            text-align: center;
+            color: #2e7d32;
+            font-size: 40px;
+            margin-bottom: 40px;
+        }
+
+        .cart-item {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .product-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .icon {
+            font-size: 50px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 8px;
+            font-size: 22px;
+        }
+
+        .product-info p {
+            color: #666;
+        }
+
+        .price {
+            color: #2e7d32;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .empty {
+            background: white;
+            padding: 50px;
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .empty h3 {
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #1b5e20;
+        }
+
+        .checkout {
+            text-align: right;
+            margin-top: 30px;
+        }
+
+        .checkout-btn {
+            display: inline-block;
+            padding: 14px 30px;
+            background: #2e7d32;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        footer {
+            background: #1b5e20;
+            color: white;
+            text-align: center;
+            padding: 25px;
+            margin-top: 50px;
+        }
+
+        @media (max-width: 600px) {
+
+            nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+
+            .cart-item {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+
+            .checkout {
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <!-- Navigation -->
+
+    <nav>
+
+        <div class="logo">
+            🥛 FreshDairy
+        </div>
+
+        <div>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart 🛒</a>
+            <a href="login.html">Login</a>
+        </div>
+
+    </nav>
+
+
+    <!-- Cart Section -->
+
+    <section class="cart-section">
+
+        <h1>
+            🛒 Your Cart
+        </h1>
+
+        <div id="cartItems"></div>
+
+    </section>
+
+
+    <!-- Footer -->
+
+    <footer>
+
+        <p>
+            © 2026 FreshDairy. All Rights Reserved.
+        </p>
+
+        <p>
+            Fresh • Healthy • Trusted
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        // Get product from URL
+
+        const params = new URLSearchParams(window.location.search);
+
+        const product = params.get("product");
+
+        const cartItems = document.getElementById("cartItems");
+
+
+        // Fresh Milk
+
+        if (product === "milk") {
+
+            cartItems.innerHTML = `
+
+                <div class="cart-item">
+
+                    <div class="product-info">
+
+                        <div class="icon">
+                            🥛
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Fresh Milk
+                            </h3>
+
+                            <p>
+                                Pure and fresh cow milk.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="price">
+                        ₹60 / Liter
+                    </div>
+
+                </div>
+
+                <div class="checkout">
+
+                    <a href="#" class="checkout-btn">
+                        Proceed to Checkout
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        // Fresh Curd
+
+        else if (product === "curd") {
+
+            cartItems.innerHTML = `
+
+                <div class="cart-item">
+
+                    <div class="product-info">
+
+                        <div class="icon">
+                            🥣
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Fresh Curd
+                            </h3>
+
+                            <p>
+                                Fresh and creamy homemade-style curd.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="price">
+                        ₹50 / 500g
+                    </div>
+
+                </div>
+
+                <div class="checkout">
+
+                    <a href="#" class="checkout-btn">
+                        Proceed to Checkout
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        // Paneer
+
+        else if (product === "paneer") {
+
+            cartItems.innerHTML = `
+
+                <div class="cart-item">
+
+                    <div class="product-info">
+
+                        <div class="icon">
+                            🧀
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Paneer
+                            </h3>
+
+                            <p>
+                                Soft and fresh dairy paneer.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="price">
+                        ₹120 / 250g
+                    </div>
+
+                </div>
+
+                <div class="checkout">
+
+                    <a href="#" class="checkout-btn">
+                        Proceed to Checkout
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        // Pure Ghee
+
+        else if (product === "ghee") {
+
+            cartItems.innerHTML = `
+
+                <div class="cart-item">
+
+                    <div class="product-info">
+
+                        <div class="icon">
+                            🫙
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Pure Ghee
+                            </h3>
+
+                            <p>
+                                Premium quality pure cow ghee.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="price">
+                        ₹550 / Liter
+                    </div>
+
+                </div>
+
+                <div class="checkout">
+
+                    <a href="#" class="checkout-btn">
+                        Proceed to Checkout
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+
+        // If no product selected
+
+        else {
+
+            cartItems.innerHTML = `
+
+                <div class="empty">
+
+                    <h3>
+                        Your cart is empty 🛒
+                    </h3>
+
+                    <a href="products.html" class="btn">
+                        View Products
+                    </a>
+
+                </div>
+
+            `;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
